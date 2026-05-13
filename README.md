@@ -1,51 +1,90 @@
 # Sales Dashboard Assignment
 
-A responsive React sales dashboard built with Vite, Tailwind CSS, Chart.js, and a public users API. The UI follows the provided dashboard reference while adding a functional user management table with search, city filtering, sorting, loading, and error states.
+A responsive React sales dashboard built with Vite, Tailwind CSS, Chart.js, and a public users API. This project demonstrates a clean dashboard UI with analytics widgets and a functional user management table.
 
-## Tech Stack
+## 🚀 Setup
 
-- React 18
-- Vite
-- Tailwind CSS
-- Chart.js with `react-chartjs-2`
-- React Icons
-- Fetch API for remote data
-- ESLint
+### Requirements
 
-## Features
+- Node.js 18+ recommended
+- npm (included with Node.js)
 
-- Responsive dashboard layout for desktop, tablet, and mobile
-- Sidebar navigation and top header matching the dashboard theme
-- Sales summary stat cards
-- Visitor insights line chart
-- Revenue bar chart
-- Customer satisfaction chart
-- Target vs reality chart
-- Sales mapping by country visual
-- Volume vs service level chart
-- Top products table
-- User management table powered by `https://jsonplaceholder.typicode.com/users`
+### Install dependencies
 
-## User Table Functionality
+```bash
+npm install
+```
 
-The user table satisfies the assignment objective:
+### Run locally
 
-- Fetches users from the public API
-- Displays:
-  - Name
-  - Email
-  - Company Name
-  - City
-- Searches by name or email
-- Sorts name A-Z and Z-A
-- Filters by city
-- Handles loading state
-- Handles error state with retry action
-- Supports horizontal scrolling on small screens
+```bash
+npm run dev
+```
 
-## Project Structure
+Then open the local URL shown by Vite in your browser.
 
-The app uses a feature-oriented structure so it can scale beyond a flat `components` folder.
+### Build for production
+
+```bash
+npm run build
+```
+
+### Preview the production build
+
+```bash
+npm run preview
+```
+
+### Lint the project
+
+```bash
+npm run lint
+```
+
+## 💡 Implementation Overview
+
+### Architecture
+
+The project is organized using a feature-based structure to keep dashboard and user functionality separated:
+
+- `src/app/App.jsx` - main application layout and route composition
+- `src/features/dashboard/` - dashboard page and visual widgets
+- `src/features/users/` - user table and API-driven data logic
+- `src/shared/layout/` - reusable layout components like `Header` and `Sidebar`
+- `src/styles/index.css` - Tailwind base styles and custom utilities
+
+### UI and layout
+
+- Tailwind CSS is used for responsive styling across mobile, tablet, and desktop
+- The dashboard layout includes a sidebar and header with a main content panel
+- Cards and charts adapt using responsive grid classes rather than separate mobile views
+
+### Data and behavior
+
+- The sales dashboard widgets display summary metrics, charts, and product statistics
+- The user table fetches data from a public API:
+  - `https://jsonplaceholder.typicode.com/users`
+- The user table supports:
+  - Search by name or email
+  - Sort by user name ascending/descending
+  - Filter by city
+  - Loading state while fetching data
+  - Error handling with a retry option
+
+### Charts
+
+- `Chart.js` and `react-chartjs-2` power the dashboard visuals
+- Each chart component is responsible for its own data configuration and rendering
+- Chart styling is kept consistent with the dashboard theme
+
+### Component responsibility
+
+- `features/dashboard/components/` contains reusable dashboard widgets
+- `features/dashboard/pages/Dashboard.jsx` assembles the page from widgets
+- `features/users/components/UserTable.jsx` manages API calls, filtering, sorting, and UI state
+- `shared/layout/` contains shell components used across the app
+
+## 📁 Project Structure
 
 ```text
 src/
@@ -77,65 +116,16 @@ src/
   main.jsx
 ```
 
-## Architectural Notes
+## ✅ Key Features
 
-- `features/dashboard` owns dashboard-specific visual components and the page composition.
-- `features/users` owns API-driven user table behavior.
-- `shared/layout` contains reusable shell components such as `Header` and `Sidebar`.
-- Barrel exports are used for cleaner imports and easier future refactors.
-- Chart configuration is kept close to the component that renders each chart.
-- The layout uses Tailwind responsive breakpoints instead of separate mobile components.
+- Responsive sales dashboard with summary cards and chart widgets
+- User table with search, sort, and city filters
+- Error and loading states for remote user data
+- Clean feature-based structure for easy maintenance
+- Production-ready build and lint scripts
 
-## Getting Started
+## 📌 Notes
 
-Install dependencies:
-
-```bash
-npm install
-```
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
-Build for production:
-
-```bash
-npm run build
-```
-
-Run lint checks:
-
-```bash
-npm run lint
-```
-
-## Verification
-
-Before submitting, run:
-
-```bash
-npm run lint
-npm run build
-```
-
-Both commands should pass successfully.
-
-## Responsive Behavior
-
-- Mobile: dashboard cards stack in one column and tables scroll horizontally.
-- Tablet: cards use a 6-column grid.
-- Desktop: cards use the full 12-column dashboard layout.
-- Fixed desktop card heights are only applied at large breakpoints to avoid mobile clipping.
-
-## API
-
-Users are loaded from:
-
-```text
-https://jsonplaceholder.typicode.com/users
-```
-
-The app uses the browser Fetch API and gracefully displays a retry UI if the request fails.
+- The app uses browser fetch for users data; no backend is required
+- Layout scales with Tailwind responsive utilities for all screen sizes
+- The project is designed for demo presentation and code review readiness
